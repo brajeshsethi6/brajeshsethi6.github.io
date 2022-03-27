@@ -2,7 +2,7 @@
     margin:0; padding:0;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-transform: capitalize;
+    //text-transform: capitalize;
     outline: none; border:none;
     text-decoration: none;
     font-weight: normal;
@@ -165,6 +165,85 @@ header .navbar ul li a:hover{
     transition: .2s linear;
 }
 
+
+
+.sd{
+
+background: url(image/insta1.jpg);
+
+animation: slide 1s infinite;
+
+animation-duration:5s; 
+}
+@keyframes slide{
+
+50%{background: url(image/insta1.jpg);
+}
+50%{background: url(image/insta.png);
+}
+}
+.sd3{
+background: url(image/stock1.png);
+height:200px;
+width:300px;
+animation: slide3 1s infinite;
+
+animation-duration:5s; 
+}
+@keyframes slide3{
+
+50%{background: url(image/stock1.jpg);
+}
+50%{background: url(image/stock2.png);
+}
+}
+
+.sd1{
+background: url(image/iris/a.png);
+height:200px;
+width:300px;
+animation: slide1 1s infinite;
+
+animation-duration:5s; 
+}
+@keyframes slide1{
+
+0%{background: url(image/iris/a.png);
+}
+25%{background: url(image/iris/b.png);
+}
+50%{background: url(image/iris/c.png);
+}
+75%{background: url(image/iris/d.png);
+}
+100%{background: url(image/iris/e.png);
+}
+}
+
+.sd2{
+background: url(image/hand/a.png);
+height:200px;
+width:300px;
+animation: slide2 1s infinite;
+
+animation-duration:5s; 
+}
+@keyframes slide2{
+
+0%{background: url(image/hand/1.png);
+}
+25%{background: url(image/hand/2.png);
+}
+50%{background: url(image/hand/3.png);
+}
+75%{background: url(image/hand/4.png);
+}
+100%{background: url(image/hand/5.png);
+}
+}
+
+
+
 .home .share a{
     background: rgba(255,255,255,.2);
     box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
@@ -267,12 +346,15 @@ header .navbar ul li a:hover{
 
 .Projects .box-container .box i{
     color:#fff;
+    
     font-size: 4.5rem;
     padding:1rem 0;
 }
 
 .Projects .box-container .box p{
     color:#eee;
+    background-color:rgba(255,60,80,0.5);
+    text-shadow:1px 1px black;
     font-size: 1.3rem;
     padding:.5rem 5rem;
 }
@@ -407,3 +489,4 @@ header .navbar ul li a:hover{
     box-shadow: 0 0 0 .5rem rgba(255,255,255,.2),
                 0 1rem 2rem rgba(0,0,0,.4);
 }*\
+
