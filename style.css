@@ -192,7 +192,7 @@ animation-duration:5s;
 }
 @keyframes slide3{
 
-50%{background: url(image/stock1.jpg);
+50%{background: url(image/stock1.png);
 }
 50%{background: url(image/stock2.png);
 }
