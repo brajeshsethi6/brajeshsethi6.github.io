@@ -183,7 +183,7 @@ animation-duration:5s;
 }
 }
 .sd3{
-background: url(stock1.png);
+background: url(image/stock1.png);
 height:200px;
 width:300px;
 animation: slide3 1s infinite;
