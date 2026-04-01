@@ -1,13 +1,290 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    <title>Brajesh Kumar Sethi | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-slate-950 text-slate-200 font-sans selection:bg-sky-500/30">
+    
+    <!-- Mobile Header -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="profile.jpeg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-sky-500" referrerPolicy="no-referrer">
+        <h1 class="font-bold text-white tracking-tight">Brajesh Sethi</h1>
+      </div>
+      <button id="menu-toggle" class="text-slate-300 hover:text-white">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </header>
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+      
+      <!-- Sidebar Navigation -->
+      <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-40 w-full lg:w-80 h-screen bg-slate-900 border-r border-slate-800 transition-transform duration-300 -translate-x-full lg:translate-x-0">
+        <div class="h-full flex flex-col p-8">
+          <div class="hidden lg:flex flex-col items-center text-center mb-10">
+            <div class="relative mb-4">
+              <div class="absolute inset-0 bg-sky-500 rounded-full blur-xl opacity-20 animate-pulse"></div>
+              <img src="profile.jpeg" alt="Brajesh Kumar Sethi" class="w-32 h-32 rounded-full border-4 border-slate-800 relative z-10" referrerPolicy="no-referrer">
+            </div>
+            <h3 class="text-xl font-bold text-white">Brajesh Kumar Sethi</h3>
+            <p class="text-sky-400 text-sm font-medium">Machine Learning Engineer</p>
+          </div>
+
+          <nav class="flex-1 space-y-2">
+            <a href="#home" class="nav-link active flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-house w-5"></i>
+              <span class="font-medium">Home</span>
+            </a>
+            <a href="#about" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-user w-5"></i>
+              <span class="font-medium">About</span>
+            </a>
+            <a href="#projects" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-briefcase w-5"></i>
+              <span class="font-medium">Projects</span>
+            </a>
+            <a href="#education" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-graduation-cap w-5"></i>
+              <span class="font-medium">Education</span>
+            </a>
+            <a href="#contact" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-envelope w-5"></i>
+              <span class="font-medium">Contact</span>
+            </a>
+          </nav>
+
+          <div class="mt-auto pt-8 border-t border-slate-800">
+            <div class="flex justify-center gap-4">
+              <a href="https://www.facebook.com/brajeshkumar.sethi.52" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="https://twitter.com/BrajeshSethi" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.instagram.com/brajesh.py/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/brajesh-kumar-sethi-9b090b151/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 w-full">
+        
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 lg:pt-0">
+          <h3 class="text-slate-400 text-xl md:text-2xl mb-2">Hi there...</h3>
+          <h1 class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
+            My Name Is <span class="text-sky-500">Brajesh Kumar Sethi</span>
+          </h1>
+          <h2 class="text-2xl md:text-4xl font-semibold text-slate-200 mb-8">
+            I am a <span id="typing-text" class="text-sky-400 font-bold"></span>
+          </h2>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="#projects" class="btn-secondary">View Projects</a>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">About Me</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="glass-card">
+              <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-user text-sky-500"></i> Profile
+              </h3>
+              <p class="text-slate-400 leading-relaxed mb-6">
+                Machine Learning Engineer with 3.6+ years of experience building ML solutions, LLM-powered applications, and end-to-end RAG pipelines. Skilled in vector search, semantic retrieval, embeddings, enterprise document intelligence, and scalable ML deployment on Azure.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">NLP</span>
+                <span class="skill-badge">LLMs</span>
+                <span class="skill-badge">Azure AI</span>
+                <span class="skill-badge">PyTorch</span>
+                <span class="skill-badge">LangChain</span>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="glass-card">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase text-sky-500"></i> Experience
+                </h3>
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="text-sky-400 font-semibold">Machine Learning Engineer</h4>
+                    <p class="text-slate-500 text-sm">Version 1 | Bangalore, India | 2022 - 2026</p>
+                    <ul class="mt-2 text-slate-400 text-sm space-y-1 list-disc list-inside">
+                      <li>Designed code intelligence pipeline using LLMs & Neo4j</li>
+                      <li>Built enterprise RAG system using Azure AI Search</li>
+                      <li>Developed streaming pipeline for real-time topic detection</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">Featured Projects</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card group">
+              <div class="project-icon-box"><i class="fa-solid fa-database"></i></div>
+              <h3 class="text-xl font-bold text-white mb-2">RAG-based Document Intelligence</h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">Enterprise RAG system using Azure AI Search, OpenAI embeddings, and semantic chunking for intelligent document retrieval.</p>
+              <div class="flex gap-2">
+                <span class="tag">Azure</span>
+                <span class="tag">OpenAI</span>
+              </div>
+            </div>
+            <div class="glass-card group">
+              <div class="project-icon-box"><i class="fa-solid fa-terminal"></i></div>
+              <h3 class="text-xl font-bold text-white mb-2">LLM Code Documentation</h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">Automated code intelligence pipeline using Neo4j and Azure Durable Functions to reduce developer onboarding time.</p>
+              <div class="flex gap-2">
+                <span class="tag">LLM</span>
+                <span class="tag">Neo4j</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">Education</h2>
+          <div class="space-y-8">
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <span class="text-sky-500 text-sm font-bold">2024 - 2026</span>
+              <h3 class="text-xl font-bold text-white mt-1">Master’s degree in Artificial Intelligence</h3>
+              <p class="text-slate-400 font-medium">Birla Institute of Technology and Science, Pilani</p>
+            </div>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <span class="text-sky-500 text-sm font-bold">2016 - 2020</span>
+              <h3 class="text-xl font-bold text-white mt-1">Bachelor of Technology in Mechanical Engineering</h3>
+              <p class="text-slate-400 font-medium">Modern Engineering and Management Studies, Odisha</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">Certifications</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="glass-card">
+              <h3 class="text-lg font-semibold text-white mb-2">Microsoft Certified</h3>
+              <p class="text-slate-400 text-sm">Azure AI Fundamentals (AI-900)</p>
+            </div>
+            <div class="glass-card">
+              <h3 class="text-lg font-semibold text-white mb-2">Coursera</h3>
+              <p class="text-slate-400 text-sm">Python for Data Science, AI & Development</p>
+            </div>
+            <div class="glass-card">
+              <h3 class="text-lg font-semibold text-white mb-2">Microsoft Certified</h3>
+              <p class="text-slate-400 text-sm">Azure Fundamentals (AZ-900)</p>
+            </div>
+            <div class="glass-card">
+              <h3 class="text-lg font-semibold text-white mb-2">NPTEL IIT Madras</h3>
+              <p class="text-slate-400 text-sm">Python Data Science</p>
+            </div>
+            <div class="glass-card">
+              <h3 class="text-lg font-semibold text-white mb-2">NPTEL IIT Kharagpur</h3>
+              <p class="text-slate-400 text-sm">Robotics</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">Get In Touch</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <form class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" placeholder="Full Name" class="form-input">
+                <input type="email" placeholder="Email Address" class="form-input">
+              </div>
+              <input type="text" placeholder="Subject" class="form-input">
+              <textarea placeholder="Your Message" rows="5" class="form-input resize-none"></textarea>
+              <button type="submit" class="btn w-full">Send Message</button>
+            </form>
+
+            <div class="glass-card">
+              <h3 class="text-xl font-bold text-white mb-6">Contact Information</h3>
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="info-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                  <div>
+                    <h4 class="text-white font-semibold">Location</h4>
+                    <p class="text-slate-500 text-sm">South Ex-II, New Delhi, India 110016</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="info-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                  <div>
+                    <h4 class="text-white font-semibold">Email</h4>
+                    <p class="text-slate-500 text-sm">brajeshsethi6@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="py-12 border-t border-slate-900 text-center">
+          <p class="text-slate-600 text-sm">© 2026 Brajesh Kumar Sethi. All rights reserved.</p>
+        </footer>
+
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script>
+      // Typed.js initialization
+      new Typed('#typing-text', {
+        strings: ['Machine Learning Engineer', 'Python Developer', 'Mechanical Engineer', 'AI Researcher'],
+        typeSpeed: 100,
+        backSpeed: 50,
+        loop: true
+      });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+      });
+
+      // Close sidebar on link click (mobile)
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) {
+            sidebar.classList.add('-translate-x-full');
+          }
+        });
+      });
+
+      // Active Section Highlighting
+      window.addEventListener('scroll', () => {
+        const sections = ['home', 'about', 'projects', 'education', 'contact'];
+        const scrollPos = window.scrollY + 100;
+
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          const link = document.querySelector(`.nav-link[href="#${id}"]`);
+          if (el && el.offsetTop <= scrollPos && (el.offsetTop + el.offsetHeight) > scrollPos) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 

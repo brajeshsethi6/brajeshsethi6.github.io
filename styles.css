@@ -1,0 +1,303 @@
+/* Static CSS that works without Tailwind build step */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: inherit;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.btn {
+  padding: 0.625rem 1.5rem;
+  background-color: #0ea5e9;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 10px 20px rgba(14,165,233,0.2);
+}
+
+.btn:hover {
+  background-color: #38bdf8;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-secondary {
+  padding: 0.625rem 1.5rem;
+  background-color: #0f172a;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.55));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 1rem;
+  padding: 1.6rem;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.btn {
+  padding: 0.75rem 1.65rem;
+  background-image: linear-gradient(120deg, #0ea5e9 0%, #3b82f6 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 10px 20px rgba(14, 165, 233, 0.35);
+  border: 1px solid rgba(14, 165, 233, 0.45);
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 25px rgba(14, 165, 233, 0.55);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(14, 165, 233, 0.35);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.4);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.65rem;
+  background: linear-gradient(145deg, #1e293b, #334155);
+  color: #e2e8f0;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+}
+
+.btn-secondary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.55);
+}
+
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+}
+
+.nav-link {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.nav-link.active {
+  background-color: #0ea5e9;
+  color: white;
+  box-shadow: 0 10px 20px rgba(14,165,233,0.2);
+}
+
+.social-icon {
+  padding: 0.5rem;
+  background-color: #0f172a;
+  color: #94a3b8;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-flex;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.skill-badge {
+  padding: 0.25rem 0.75rem;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #1e293b;
+}
+
+.project-icon-box {
+  width: 3rem;
+  height: 3rem;
+  background-color: #0f172a;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #0ea5e9;
+  transition: all 0.2s ease-in-out;
+}
+
+.group:hover .project-icon-box {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.tag {
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #0ea5e9;
+  background-color: rgba(14,165,233,0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+}
+
+.edu-item {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid #1e293b;
+}
+
+.edu-dot {
+  position: absolute;
+  left: -0.56rem;
+  top: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: #0ea5e9;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(14,165,233,0.5);
+}
+
+#contact .form-input {
+  width: 100%;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #e2e8f0;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px rgba(14,165,233,0.3);
+}
+
+.info-icon-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(14,165,233,0.1);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0ea5e9;
+}
+
+#contact {
+  padding: 4.5rem 1.5rem;
+  max-width: 84rem;
+  margin: 0 auto;
+}
+
+#contact .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  #contact .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+#contact h2.section-heading {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+#contact .contact-subtitle {
+  color: #94a3b8;
+  margin-bottom: 1.8rem;
+}
+
+#contact form {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.80));
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+#contact .glass-card {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+#contact .info-icon-box {
+  background-color: rgba(14, 165, 233, 0.12);
+  color: #34d399;
+}
+
+#contact .text-slate-500 {
+  color: #cbd5e1;
+}
+
+#contact .btn {
+  width: 100%;
+  max-width: 100%;
+}
+
+#contact .btn-secondary, #contact .btn {
+  font-size: 1rem;
+}
