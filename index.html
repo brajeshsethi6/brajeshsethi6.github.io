@@ -207,7 +207,15 @@
                 </div>
                 <div class="icons">
                     <h3><i class="fas fa-phone"></i> phone </h3>
-                    <p>+918917615924</p>
+                    <p>
+                        <button id="requestCallBtn" class="btn">Request a call</button>
+                    </p>
+                    <div id="callRequestForm" style="display:none; margin-top: 10px;">
+                        <input type="tel" id="callerNumber" class="box" placeholder="Your phone number" required>
+                        <input type="email" id="callerEmail" class="box" placeholder="Your email (optional)">
+                        <button id="sendCallRequestBtn" class="btn">Send request</button>
+                        <p id="callRequestStatus" style="margin-top:8px; font-size:0.9rem; color:#333;"></p>
+                    </div>
                 </div>
             </div>
 
@@ -248,6 +256,97 @@
         let background = color.style.background;
         document.querySelector('body').style.background = background;
     }));
+
+    const requestCallBtn = document.getElementById('requestCallBtn');
+    const callRequestForm = document.getElementById('callRequestForm');
+    const sendCallRequestBtn = document.getElementById('sendCallRequestBtn');
+    const callRequestStatus = document.getElementById('callRequestStatus');
+
+    requestCallBtn.addEventListener('click', () => {
+        callRequestForm.style.display = 'block';
+        requestCallBtn.style.display = 'none';
+        callRequestStatus.textContent = '';
+    });
+
+    sendCallRequestBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const callerNumber = document.getElementById('callerNumber').value.trim();
+        const callerEmail = document.getElementById('callerEmail').value.trim();
+
+        if (!callerNumber) {
+            callRequestStatus.textContent = 'Please enter your phone number to send the request.';
+            callRequestStatus.style.color = 'red';
+            return;
+        }
+
+        // EmailJS REST API configuration (replace with your actual IDs from emailjs.com)
+        const emailjsServiceId = 'your_service_id';
+        const emailjsTemplateId = 'your_template_id';
+        const emailjsUserId = 'your_user_id';
+
+        const payload = {
+            service_id: emailjsServiceId,
+            template_id: emailjsTemplateId,
+            user_id: emailjsUserId,
+            template_params: {
+                to_email: 'brajeshsethi6@gmail.com',
+                from_number: callerNumber,
+                from_email: callerEmail || 'N/A',
+                request_text: 'Please call this user back.'
+            }
+        };
+
+        callRequestStatus.textContent = 'Sending request...';
+        callRequestStatus.style.color = '#333';
+
+        function saveRequestAsText(number, email) {
+            const textData = `Call request submitted:\nPhone number: ${number}\nEmail: ${email || 'N/A'}\nSubmitted at: ${new Date().toISOString()}\n`;
+            localStorage.setItem('latestCallRequest', textData);
+
+            const blob = new Blob([textData], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'call_request.txt';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+        }
+
+        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                callRequestStatus.textContent = 'Call request sent successfully!';
+                callRequestStatus.style.color = 'green';
+                document.getElementById('callerNumber').value = '';
+                document.getElementById('callerEmail').value = '';
+                callRequestForm.style.display = 'none';
+                saveRequestAsText(callerNumber, callerEmail);
+            } else {
+                return response.text().then(text => { throw new Error(text || 'Unable to send email'); });
+            }
+        })
+        .catch(error => {
+            console.error('Email send failed', error);
+            callRequestStatus.textContent = 'Failed to send request. Please try again later, or use mailto fallback.';
+            callRequestStatus.style.color = 'red';
+
+            saveRequestAsText(callerNumber, callerEmail);
+
+            // Fallback via mailto for clients where API call might be blocked
+            const fallbackSubject = encodeURIComponent('Call request from website');
+            const fallbackBody = encodeURIComponent(`Hello Brajesh,\n\nA visitor requested a callback.\nPhone number: ${callerNumber}\nEmail: ${callerEmail || 'N/A'}\n\nPlease contact them when available.`);
+            window.location.href = `mailto:brajeshsethi6@gmail.com?subject=${fallbackSubject}&body=${fallbackBody}`;
+        });
+    });
 
 </script>
 

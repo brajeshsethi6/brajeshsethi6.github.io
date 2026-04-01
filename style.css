@@ -467,9 +467,65 @@ animation-duration:5s;
     padding-right: .5rem;
 }
 
-.contact .row .content .icons p{
+..contact .row .content .icons p{
     font-size: 1.5rem;
     color:#eee;
+}
+
+#requestCallBtn{
+    font-size: 1.8rem;
+    padding: .6rem 2rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,.2);
+    color: #fff;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+#requestCallBtn:hover{
+    background: rgba(255,255,255,.45);
+    color: #111;
+}
+
+#callRequestForm{
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 34rem;
+}
+
+#callRequestForm .box{
+    width: 100%;
+    margin: .5rem 0;
+    font-size: 1.6rem;
+    height: 4rem;
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 0 .8rem;
+}
+
+#sendCallRequestBtn{
+    font-size: 1.8rem;
+    padding: .6rem 2rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,.2);
+    color: #fff;
+    cursor: pointer;
+    margin-top: .5rem;
+}
+
+#sendCallRequestBtn:hover{
+    background: rgba(255,255,255,.45);
+    color: #111;
+}
+
+#callRequestStatus{
+    margin-top: .7rem;
+    font-size: 1.4rem;
+    min-height: 2rem;
 }
 
 /*.theme-toggler{
