@@ -57,6 +57,10 @@
               <i class="fa-solid fa-briefcase w-5"></i>
               <span class="font-medium">Projects</span>
             </a>
+            <a href="#services" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
+              <i class="fa-solid fa-server w-5"></i>
+              <span class="font-medium">Services</span>
+            </a>
             <a href="#education" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200">
               <i class="fa-solid fa-graduation-cap w-5"></i>
               <span class="font-medium">Education</span>
@@ -169,6 +173,62 @@
                 <span class="tag">Neo4j</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+          <h2 class="section-heading">Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <a href="candleshope.html" class="glass-card group flex flex-col hover:border-sky-500/50 transition-all duration-500 block no-underline">
+              <!-- Slideshow Container -->
+              <div class="relative overflow-hidden rounded-xl mb-6 aspect-video">
+                <div id="candle-slides" class="flex h-full transition-transform duration-700 ease-out">
+                  <img src="service/candleshope/10.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 1">
+                  <img src="service/candleshope/9.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 2">
+                  <img src="service/candleshope/8.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 3">
+                  <img src="service/candleshope/1.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 4">
+                  <img src="service/candleshope/2.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 5">
+                  <img src="service/candleshope/3.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 6">
+                  <img src="service/candleshope/4.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 7">
+                  <img src="service/candleshope/5.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 8">
+                  <img src="service/candleshope/6.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 9">
+                  <img src="service/candleshope/7.png" class="w-full h-full object-cover shrink-0" alt="CandleShop 10">
+                </div>
+                <!-- Navigation Dots -->
+                <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                  <span class="candle-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                </div>
+              </div>
+              
+              <div class="flex justify-between items-start mb-4">
+                <div class="project-icon-box m-0"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="text-sky-500 opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0">
+                  <span class="text-xs font-bold uppercase tracking-widest">View Details</span>
+                  <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold text-white mb-2">CandleShop</h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                A premium, full-stack e-commerce application tailored for a boutique candle business. Featuring a seamless Next.js frontend and FastAPI backend.
+              </p>
+              
+              <div class="mt-auto flex gap-2">
+                <span class="tag">Full-Stack</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">FastAPI</span>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -290,7 +350,7 @@
 
       // Active Section Highlighting
       window.addEventListener('scroll', () => {
-        const sections = ['home', 'about', 'projects', 'education', 'certifications', 'contact'];
+        const sections = ['home', 'about', 'projects', 'services', 'education', 'certifications', 'contact'];
         const scrollPos = window.scrollY + 100;
 
         // Check if we're at the bottom of the page
@@ -312,6 +372,32 @@
           }
         });
       });
+
+      // CandleShop Slideshow logic
+      let currentSlide = 0;
+      const slides = document.getElementById('candle-slides');
+      const dots = document.querySelectorAll('.candle-dot');
+      const totalSlides = 10;
+
+      function updateSlides() {
+        if (!slides) return;
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.classList.add('bg-sky-500', 'w-4');
+            dot.classList.remove('bg-white/20', 'w-1.5');
+          } else {
+            dot.classList.remove('bg-sky-500', 'w-4');
+            dot.classList.add('bg-white/20', 'w-1.5');
+          }
+        });
+        currentSlide = (currentSlide + 1) % totalSlides;
+      }
+
+      if (slides) {
+        setInterval(updateSlides, 3000);
+        updateSlides();
+      }
     </script>
   </body>
 </html>
