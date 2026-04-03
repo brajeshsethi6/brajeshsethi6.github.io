@@ -301,3 +301,18 @@ body {
 #contact .btn-secondary, #contact .btn {
   font-size: 1rem;
 }
+
+/* Mobile-specific UI placement */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 4rem; /* avoid content behind bottom social bar */
+  }
+
+  #home {
+    padding-top: 6.5rem; /* make room for the fixed mobile profile header */
+  }
+
+  #mobile-social-bar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

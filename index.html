@@ -11,15 +11,23 @@
   <body class="bg-slate-950 text-slate-200 font-sans selection:bg-sky-500/30">
     
     <!-- Mobile Header -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-800 px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <img src="profile.jpeg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-sky-500" referrerPolicy="no-referrer">
-        <h1 class="font-bold text-white tracking-tight">Brajesh Sethi</h1>
+    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-lg border-b border-slate-800 px-6 py-4">
+      <div class="flex justify-center items-center">
+        <img src="profile.jpeg" alt="Profile" class="w-16 h-16 rounded-full border-4 border-sky-500 shadow-lg" referrerPolicy="no-referrer">
       </div>
-      <button id="menu-toggle" class="text-slate-300 hover:text-white">
+      <button id="menu-toggle" class="absolute right-4 top-4 text-slate-300 hover:text-white">
         <i class="fa-solid fa-bars text-2xl"></i>
       </button>
     </header>
+
+    <!-- Mobile Social Footer -->
+    <div id="mobile-social-bar" class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 border-t border-slate-800 py-2 flex justify-center gap-3">
+      <a href="https://www.facebook.com/brajeshkumar.sethi.52" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://twitter.com/BrajeshSethi" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+      <a href="https://www.instagram.com/brajesh.py/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/brajesh-kumar-sethi-9b090b151/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://medium.com/@brajeshsethi6" target="_blank" class="social-icon"><i class="fa-brands fa-medium"></i></a>
+    </div>
 
     <div class="flex flex-col lg:flex-row min-h-screen">
       
@@ -58,7 +66,7 @@
             </a>
           </nav>
 
-          <div class="mt-auto pt-8 border-t border-slate-800">
+          <div class="mt-auto pt-8 border-t border-slate-800 hidden lg:block">
             <div class="flex justify-center gap-4">
               <a href="https://www.facebook.com/brajeshkumar.sethi.52" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="https://twitter.com/BrajeshSethi" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
@@ -75,6 +83,9 @@
         
         <!-- Home Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 lg:pt-0">
+          <div class="mb-6 lg:hidden">
+            <img src="profile.jpeg" alt="Profile" class="mx-auto w-24 h-24 rounded-full border-4 border-sky-500 shadow-lg" referrerPolicy="no-referrer">
+          </div>
           <h3 class="text-slate-400 text-xl md:text-2xl mb-2">Hi there...</h3>
           <h1 class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
             My Name Is <span class="text-sky-500">Brajesh Kumar Sethi</span>
