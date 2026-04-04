@@ -310,14 +310,15 @@
         <section id="contact" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
           <h2 class="section-heading">Get In Touch</h2>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <form class="space-y-4">
+            <form id="contact-form" class="space-y-4">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Full Name" class="form-input">
-                <input type="email" placeholder="Email Address" class="form-input">
+                <input type="text" id="fullName" placeholder="Full Name" class="form-input" required>
+                <input type="email" id="email" placeholder="Email Address" class="form-input" required>
               </div>
-              <input type="text" placeholder="Subject" class="form-input">
-              <textarea placeholder="Your Message" rows="5" class="form-input resize-none"></textarea>
-              <button type="submit" class="btn w-full">Send Message</button>
+              <input type="text" id="subject" placeholder="Subject" class="form-input" required>
+              <textarea id="message" placeholder="Your Message" rows="5" class="form-input resize-none" required></textarea>
+              <button type="submit" id="submit-btn" class="btn w-full">Send Message</button>
+              <div id="form-status" class="text-sm mt-2 text-center hidden"></div>
             </form>
 
             <div class="glass-card">
@@ -426,6 +427,59 @@
         setInterval(updateSlides, 3000);
         updateSlides();
       }
+
+      // Contact Form Submission
+      const contactForm = document.getElementById('contact-form');
+      const formStatus = document.getElementById('form-status');
+      const submitBtn = document.getElementById('submit-btn');
+
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+        formStatus.classList.remove('hidden', 'text-red-500', 'text-green-500');
+        formStatus.classList.add('text-sky-400');
+        formStatus.innerText = 'Sending message...';
+
+        const formData = {
+          fullName: document.getElementById('fullName').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+        };
+
+        try {
+          // Replace with your real backend URL once deployed (e.g., https://your-backend.render.com/api/contact)
+          const API_URL = 'http://localhost:8000/api/contact'; 
+          
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            formStatus.innerText = '✅ ' + (result.message || 'Message sent successfully!');
+            formStatus.classList.replace('text-sky-400', 'text-green-500');
+            contactForm.reset();
+          } else {
+            throw new Error(result.detail || 'Failed to send message');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          formStatus.innerText = '❌ Error: ' + error.message;
+          formStatus.classList.replace('text-sky-400', 'text-red-500');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Send Message';
+        }
+      });
     </script>
   </body>
 </html>
