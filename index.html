@@ -350,8 +350,50 @@
       </main>
     </div>
 
+    <!-- AI Chat Panel -->
+    <div id="chat-widget-container">
+      <div id="chat-window">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-avatar">
+              <i class="fa-solid fa-robot"></i>
+              <div class="avatar-status"></div>
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-sm leading-tight">Brajesh AI</h4>
+              <p class="text-sky-400 text-[10px] font-medium uppercase tracking-wider">Online Assistant</p>
+            </div>
+          </div>
+          <button id="close-chat" class="text-slate-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        
+        <div id="chat-messages" class="chat-messages">
+          <!-- Messages will be injected here -->
+          <div class="message bot">
+            Hi! I'm Brajesh's AI assistant. How can I help you today?
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <form id="chat-form" class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off">
+            <button type="submit" id="chat-send-btn" disabled title="Send message">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <button id="chat-toggle-btn" aria-label="Toggle Chat" title="Chat with Brajesh AI">
+        <i class="fa-solid fa-message"></i>
+      </button>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       // Typed.js initialization
       new Typed('#typing-text', {
@@ -480,7 +522,154 @@
           submitBtn.innerText = 'Send Message';
         }
       });
+
+      // --- AI Chat Logic ---
+      const chatToggleBtn = document.getElementById('chat-toggle-btn');
+      const chatWindow = document.getElementById('chat-window');
+      const closeChat = document.getElementById('close-chat');
+      const chatForm = document.getElementById('chat-form');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
+      const chatSendBtn = document.getElementById('chat-send-btn');
+      
+      const CHAT_API_URL = 'https://datacoder01-chatbot.hf.space/api/chat';
+      const STORAGE_KEY = 'brajesh_chat_history';
+
+      // Local Greeting Dictionary
+      const GREETINGS = {
+        'hello': "Hello! I'm Brajesh's AI assistant. How can I help you today?",
+        'hi': "Hi there! How can I assist you with information about Brajesh's work?",
+        'hey': "Hey! How can I help you today?",
+        'good morning': "Good morning! I hope you're having a great start to your day. How can I help you?",
+        'good afternoon': "Good afternoon! How can I assist you?",
+        'good evening': "Good evening! Is there anything you'd like to know about Brajesh's projects?"
+      };
+
+      // Toggle Chat Window
+      chatToggleBtn.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+        const icon = chatToggleBtn.querySelector('i');
+        if (chatWindow.classList.contains('active')) {
+          icon.classList.replace('fa-message', 'fa-chevron-down');
+          chatInput.focus();
+        } else {
+          icon.classList.replace('fa-chevron-down', 'fa-message');
+        }
+      });
+
+      closeChat.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+        chatToggleBtn.querySelector('i').classList.replace('fa-chevron-down', 'fa-message');
+      });
+
+      // Enable/Disable Send Button
+      chatInput.addEventListener('input', () => {
+        chatSendBtn.disabled = !chatInput.value.trim();
+      });
+
+      // Load Chat History
+      function loadHistory() {
+        const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (history.length > 0) {
+          chatMessages.innerHTML = '';
+          history.forEach(msg => appendMessage(msg.role, msg.content, false));
+        }
+      }
+
+      // Save Chat History
+      function saveHistory(role, content) {
+        const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        history.push({ role, content });
+        // Keep only last 50 messages
+        if (history.length > 50) history.shift();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      }
+
+      // Append Message to UI
+      function appendMessage(role, content, save = true) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${role}`;
+        
+        if (role === 'bot') {
+          // Render as Markdown for Bot
+          msgDiv.innerHTML = marked.parse(content);
+          // Ensure links open in new tab
+          msgDiv.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+          });
+        } else {
+          msgDiv.textContent = content;
+        }
+
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        if (save) saveHistory(role, content);
+      }
+
+      // Add Typing Indicator
+      function showTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.className = 'typing-indicator';
+        indicator.id = 'typing-indicator';
+        indicator.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(indicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // Remove Typing Indicator
+      function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) indicator.remove();
+      }
+
+      // Handle Form Submit
+      chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const query = chatInput.value.trim();
+        if (!query) return;
+
+        // Add User Message
+        appendMessage('user', query);
+        chatInput.value = '';
+        chatSendBtn.disabled = true;
+
+        // Check local dictionary for basic greetings
+        const cleanQuery = query.toLowerCase().trim().replace(/[?.!]$/g, '');
+        if (GREETINGS[cleanQuery]) {
+          showTypingIndicator();
+          setTimeout(() => {
+            removeTypingIndicator();
+            appendMessage('bot', GREETINGS[cleanQuery]);
+          }, 600);
+          return;
+        }
+
+        // Show Typing Indicator
+        showTypingIndicator();
+
+        try {
+          const response = await fetch(CHAT_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query })
+          });
+
+          if (!response.ok) throw new Error('API Error');
+
+          const data = await response.json();
+          removeTypingIndicator();
+          appendMessage('bot', data.answer || "I couldn't get a proper response. Please try again.");
+        } catch (error) {
+          console.error('Chat Error:', error);
+          removeTypingIndicator();
+          appendMessage('bot', "Sorry, I'm having trouble connecting to the brain. Please try again later.");
+        }
+      });
+
+      // Initialize
+      loadHistory();
     </script>
   </body>
 </html>
-
