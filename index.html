@@ -630,12 +630,23 @@
         const query = chatInput.value.trim();
         if (!query) return;
 
-        // Add User Message
+        // Get last 2 messages for context
+        const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        const last2 = history.slice(-2);
+        
+        // Build augmented query with context
+        let payloadQuery = query;
+        if (last2.length > 0) {
+          const context = last2.map(m => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`).join('\n');
+          payloadQuery = `Context:\n${context}\n\nQuestion: ${query}`;
+        }
+
+        // Add User Message to UI (only the new query)
         appendMessage('user', query);
         chatInput.value = '';
         chatSendBtn.disabled = true;
 
-        // Check local dictionary for basic greetings
+        // Check local dictionary for basic greetings (using simple query)
         const cleanQuery = query.toLowerCase().trim().replace(/[?.!]$/g, '');
         if (GREETINGS[cleanQuery]) {
           showTypingIndicator();
@@ -653,7 +664,7 @@
           const response = await fetch(CHAT_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query })
+            body: JSON.stringify({ query: payloadQuery })
           });
 
           if (!response.ok) throw new Error('API Error');
