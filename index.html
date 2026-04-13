@@ -524,6 +524,7 @@
       });
 
       // --- AI Chat Logic ---
+      const chatWidgetContainer = document.getElementById('chat-widget-container');
       const chatToggleBtn = document.getElementById('chat-toggle-btn');
       const chatWindow = document.getElementById('chat-window');
       const closeChat = document.getElementById('close-chat');
@@ -547,6 +548,7 @@
 
       // Toggle Chat Window
       chatToggleBtn.addEventListener('click', () => {
+        chatWidgetContainer.classList.toggle('active');
         chatWindow.classList.toggle('active');
         const icon = chatToggleBtn.querySelector('i');
         if (chatWindow.classList.contains('active')) {
@@ -558,6 +560,7 @@
       });
 
       closeChat.addEventListener('click', () => {
+        chatWidgetContainer.classList.remove('active');
         chatWindow.classList.remove('active');
         chatToggleBtn.querySelector('i').classList.replace('fa-chevron-down', 'fa-message');
       });
